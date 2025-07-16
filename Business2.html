@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GhanaDeals - Smart Shopping Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+        .discount-pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .wallet-gradient {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <button id="mobile-menu-button" class="md:hidden text-gray-700">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                <a href="#" class="text-2xl font-bold text-blue-600">GhanaDeals</a>
+            </div>
+            
+            <nav class="hidden md:flex space-x-8">
+                <a href="#" class="text-gray-700 hover:text-blue-600 font-medium">Home</a>
+                <a href="#products" class="text-gray-700 hover:text-blue-600 font-medium">Products</a>
+                <a href="#referral" class="text-gray-700 hover:text-blue-600 font-medium">Earn</a>
+                <a href="#wallet" class="text-gray-700 hover:text-blue-600 font-medium">Wallet</a>
+            </nav>
+            
+            <div class="flex items-center space-x-4">
+                <button id="cart-button" class="text-gray-700 hover:text-blue-600 relative">
+                    <i class="fas fa-shopping-cart text-xl"></i>
+                    <span id="cart-count" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                </button>
+                
+                <div class="relative">
+                    <button id="user-menu-button" class="flex items-center space-x-2 focus:outline-none">
+                        <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
+                            <i class="fas fa-user text-blue-600"></i>
+                        </div>
+                    </button>
+                    <div id="user-menu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">My Account</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Wallet: GH₵<span id="wallet-balance-nav">0.00</span></a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Orders</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Referrals</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Sign Out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute left-0 top-full w-full bg-white shadow-md py-2 px-4">
+            <a href="#" class="block py-2 text-gray-700 hover:text-blue-600">Home</a>
+            <a href="#products" class="block py-2 text-gray-700 hover:text-blue-600">Products</a>
+            <a href="#referral" class="block py-2 text-gray-700 hover:text-blue-600">Earn</a>
+            <a href="#wallet" class="block py-2 text-gray-700 hover:text-blue-600">Wallet</a>
+            <div class="border-t mt-2 pt-2">
+                <a href="#" class="block py-2 text-gray-700 hover:text-blue-600">My Account</a>
+                <a href="#" class="block py-2 text-gray-700 hover:text-blue-600">Wallet</a>
+                <a href="#" class="block py-2 text-gray-700 hover:text-blue-600">Sign Out</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg py-16">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-8 md:mb-0">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Smart Shopping, More Savings</h1>
+                <p class="text-lg text-gray-600 mb-6">Wait 24 hours after adding to cart and get 10% discount automatically. Plus, get GH₵50 signup bonus and earn GH₵30 for every friend you refer!</p>
+                <div class="flex space-x-4">
+                    <a href="#products" class="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 font-medium">Shop Now</a>
+                    <a href="#referral" class="bg-white text-blue-600 px-6 py-3 rounded-md hover:bg-gray-100 font-medium border border-blue-600">Earn Money</a>
+                </div>
+            </div>
+            <div class="md:w-1/2">
+                <img src="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Shopping" class="rounded-lg shadow-xl w-full">
+            </div>
+        </div>
+    </section>
+
+    <!-- Discount Timer -->
+    <section id="discount-timer" class="bg-yellow-100 py-4 hidden">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="mb-2 md:mb-0 flex items-center">
+                    <i class="fas fa-clock text-yellow-600 mr-2"></i>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">10% Discount Available!</h3>
+                        <p class="text-sm text-gray-600">Complete purchase within:</p>
+                    </div>
+                </div>
+                <div id="countdown" class="text-xl font-bold text-blue-600 mb-2 md:mb-0">23:59:59</div>
+                <button id="checkout-now" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 text-sm font-medium">
+                    Checkout Now <i class="fas fa-arrow-right ml-1"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products -->
+    <section id="products" class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Featured Products</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Product 1 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition duration-300">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Smartphone" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 right-2 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded-full">10% OFF</div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-1">Samsung Galaxy S23</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="text-gray-600 text-xs ml-1">(128)</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-gray-500 line-through text-sm">GH₵4,999</span>
+                                <span class="text-blue-600 font-bold text-lg ml-2">GH₵4,499</span>
+                            </div>
+                            <button class="add-to-cart bg-blue-100 text-blue-600 p-2 rounded-full hover:bg-blue-200" 
+                                    data-id="1" 
+                                    data-name="Samsung Galaxy S23" 
+                                    data-price="4499" 
+                                    data-image="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition duration-300">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Laptop" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 right-2 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded-full">10% OFF</div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-1">MacBook Pro M2</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-gray-600 text-xs ml-1">(256)</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-gray-500 line-through text-sm">GH₵9,999</span>
+                                <span class="text-blue-600 font-bold text-lg ml-2">GH₵8,999</span>
+                            </div>
+                            <button class="add-to-cart bg-blue-100 text-blue-600 p-2 rounded-full hover:bg-blue-200" 
+                                    data-id="2" 
+                                    data-name="MacBook Pro M2" 
+                                    data-price="8999" 
+                                    data-image="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition duration-300">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Watch" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 right-2 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded-full">10% OFF</div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-1">Apple Watch Series 8</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="text-gray-600 text-xs ml-1">(87)</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-gray-500 line-through text-sm">GH₵2,499</span>
+                                <span class="text-blue-600 font-bold text-lg ml-2">GH₵2,199</span>
+                            </div>
+                            <button class="add-to-cart bg-blue-100 text-blue-600 p-2 rounded-full hover:bg-blue-200" 
+                                    data-id="3" 
+                                    data-name="Apple Watch Series 8" 
+                                    data-price="2199" 
+                                    data-image="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md product-card transition duration-300">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Headphones" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 right-2 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded-full">10% OFF</div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-1">Sony WH-1000XM5</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="text-gray-600 text-xs ml-1">(192)</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-gray-500 line-through text-sm">GH₵1,799</span>
+                                <span class="text-blue-600 font-bold text-lg ml-2">GH₵1,599</span>
+                            </div>
+                            <button class="add-to-cart bg-blue-100 text-blue-600 p-2 rounded-full hover:bg-blue-200" 
+                                    data-id="4" 
+                                    data-name="Sony WH-1000XM5" 
+                                    data-price="1599" 
+                                    data-image="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Referral Program -->
+    <section id="referral" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/2 bg-blue-600 text-white p-8 md:p-12">
+                        <h2 class="text-3xl font-bold mb-4">Earn With Friends</h2>
+                        <p class="text-lg mb-6">Get GH₵50 when you sign up and earn GH₵30 for every friend who joins and makes a purchase.</p>
+                        
+                        <div class="bg-blue-700 rounded-lg p-4 mb-4 flex items-center">
+                            <div class="bg-blue-800 rounded-full h-10 w-10 flex items-center justify-center mr-4">
+                                <i class="fas fa-gift"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold">Sign Up Bonus</h3>
+                                <p class="text-sm">GH₵50 credited instantly to your wallet</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-blue-700 rounded-lg p-4 flex items-center">
+                            <div class="bg-blue-800 rounded-full h-10 w-10 flex items-center justify-center mr-4">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold">Referral Earnings</h3>
+                                <p class="text-sm">GH₵30 per successful referral</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="md:w-1/2 p-8 md:p-12">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Your Referral Link</h3>
+                        
+                        <div class="mb-6">
+                            <div class="flex">
+                                <input type="text" id="referral-link" value="https://ghanadeals.com/ref/user123" 
+                                       class="flex-grow px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500" readonly>
+                                <button id="copy-referral" class="bg-blue-600 text-white px-4 py-2 rounded-r-md hover:bg-blue-700">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-50 rounded-lg p-4 mb-6">
+                            <h4 class="font-bold text-gray-800 mb-3">Your Referral Stats</h4>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-white p-3 rounded-lg shadow-sm">
+                                    <div class="text-gray-500 text-sm">Total Referrals</div>
+                                    <div class="text-xl font-bold">5</div>
+                                </div>
+                                <div class="bg-white p-3 rounded-lg shadow-sm">
+                                    <div class="text-gray-500 text-sm">Total Earnings</div>
+                                    <div class="text-xl font-bold">GH₵150</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 font-medium">
+                            View All Referrals
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wallet Section -->
+    <section id="wallet" class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">My Wallet</h2>
+            
+            <div class="max-w-md mx-auto">
+                <div class="wallet-gradient text-white rounded-lg p-6 mb-6 shadow-lg">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h3 class="text-lg font-medium mb-1">Available Balance</h3>
+                            <div class="text-3xl font-bold">GH₵<span id="wallet-balance">50.00</span></div>
+                        </div>
+                        <div class="bg-white bg-opacity-20 p-3 rounded-full">
+                            <i class="fas fa-wallet text-2xl"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="p-4 border-b border-gray-200 bg-gray-50">
+                        <h3 class="font-semibold text-gray-800">Deposit Funds</h3>
+                    </div>
+                    
+                    <div class="p-6">
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-medium mb-2">Amount (GH₵)</label>
+                            <input type="number" id="deposit-amount" 
+                                   class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                                   placeholder="Enter amount">
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-medium mb-2">Payment Method</label>
+                            <div class="grid grid-cols-3 gap-3">
+                                <button class="payment-method border border-gray-300 rounded-md p-2 hover:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500" data-method="mtn">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Mtn-logo.svg/1200px-Mtn-logo.svg.png" alt="MTN" class="h-6 mx-auto">
+                                </button>
+                                <button class="payment-method border border-gray-300 rounded-md p-2 hover:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500" data-method="vodafone">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Vodafone_Logo.svg/1200px-Vodafone_Logo.svg.png" alt="Vodafone" class="h-6 mx-auto">
+                                </button>
+                                <button class="payment-method border border-gray-300 rounded-md p-2 hover:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500" data-method="airteltigo">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Airtel_Tigo_logo.svg/1200px-Airtel_Tigo_logo.svg.png" alt="AirtelTigo" class="h-6 mx-auto">
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div id="deposit-instructions" class="hidden bg-blue-50 border border-blue-200 rounded-md p-4 mb-4">
+                            <h4 class="font-bold text-blue-800 mb-2">Payment Instructions</h4>
+                            <p class="text-blue-700 mb-1">1. Dial <span id="ussd-code" class="font-mono font-bold">*170#</span></p>
+                            <p class="text-blue-700 mb-1">2. Select "Send Money"</p>
+                            <p class="text-blue-700 mb-1">3. Recipient: <span class="font-bold">0555123456</span></p>
+                            <p class="text-blue-700">4. Amount: GH₵<span id="instruction-amount" class="font-bold">0.00</span></p>
+                        </div>
+                        
+                        <div id="transaction-id-section" class="hidden mb-4">
+                            <label class="block text-gray-700 font-medium mb-1">Transaction ID</label>
+                            <input type="text" id="transaction-id" 
+                                   class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                                   placeholder="Enter transaction ID">
+                            <p class="text-gray-500 text-xs mt-1">Found in your mobile money confirmation SMS</p>
+                        </div>
+                        
+                        <button id="verify-deposit" class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 font-medium hidden">
+                            Verify Payment
+                        </button>
+                        
+                        <div id="deposit-success" class="hidden bg-green-50 border border-green-200 rounded-md p-3 mt-4">
+                            <div class="flex items-center">
+                                <div class="bg-green-100 rounded-full h-8 w-8 flex items-center justify-center mr-3">
+                                    <i class="fas fa-check text-green-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-green-800">Deposit Successful!</h4>
+                                    <p class="text-green-700">GH₵<span id="deposited-amount">0.00</span> added to your wallet.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopping Cart Modal -->
+    <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md max-h-[90vh] overflow-y-auto">
+            <div class="p-4 border-b border-gray-200 flex justify-between items-center sticky top-0 bg-white">
+                <h3 class="text-lg font-semibold">Your Cart</h3>
+                <button id="close-cart" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div id="cart-items" class="p-4">
+                <!-- Empty state -->
+                <div id="empty-cart" class="text-center py-8">
+                    <i class="fas fa-shopping-cart text-4xl text-gray-300 mb-4"></i>
+                    <p class="text-gray-500">Your cart is empty</p>
+                    <a href="#products" class="text-blue-600 hover:text-blue-800 mt-2 inline-block" id="shop-now">Shop Now</a>
+                </div>
+            </div>
+            
+            <div id="cart-summary" class="p-4 border-t border-gray-200 hidden">
+                <div class="flex justify-between mb-1">
+                    <span class="text-gray-600">Subtotal:</span>
+                    <span class="font-medium">GH₵<span id="cart-subtotal">0.00</span></span>
+                </div>
+                <div id="discount-applied" class="flex justify-between mb-1 hidden">
+                    <span class="text-gray-600">Discount (10%):</span>
+                    <span class="text-green-600 font-medium">-GH₵<span id="discount-amount">0.00</span></span>
+                </div>
+                <div class="flex justify-between text-lg font-bold mb-4">
+                    <span>Total:</span>
+                    <span>GH₵<span id="cart-total">0.00</span></span>
+                </div>
+                
+                <div id="discount-timer-cart" class="bg-yellow-50 p-3 rounded-md mb-4 hidden">
+                    <div class="flex items-center">
+                        <i class="fas fa-clock text-yellow-500 mr-2"></i>
+                        <div>
+                            <p class="text-sm font-medium">10% discount available in:</p>
+                            <div id="cart-countdown" class="font-bold text-yellow-700">23:59:59</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button id="proceed-checkout" class="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 font-medium">
+                    Proceed to Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md max-h-[90vh] overflow-y-auto">
+            <div class="p-4 border-b border-gray-200 flex justify-between items-center sticky top-0 bg-white">
+                <h3 class="text-lg font-semibold">Checkout</h3>
+                <button id="close-checkout" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="p-4">
+                <div class="mb-4">
+                    <h4 class="font-medium text-gray-700 mb-2">Payment Method</h4>
+                    <div class="grid grid-cols-2 gap-3">
+                        <button class="checkout-method border border-gray-300 rounded-md p-3 hover:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500" data-method="wallet">
+                            <i class="fas fa-wallet text-blue-500 mr-2"></i>
+                            Wallet
+                        </button>
+                        <button class="checkout-method border border-gray-300 rounded-md p-3 hover:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500" data-method="mobile">
+                            <i class="fas fa-mobile-alt text-green-500 mr-2"></i>
+                            Mobile Money
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="wallet-payment" class="hidden mb-4">
+                    <div class="bg-blue-50 border border-blue-200 rounded-md p-3 mb-2">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-gray-700">Wallet Balance:</span>
+                            <span class="font-medium">GH₵<span id="checkout-wallet-balance">50.00</span></span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700">Order Total:</span>
+                            <span class="font-medium">GH₵<span id="checkout-order-total">0.00</span></span>
+                        </div>
+                    </div>
+                    
+                    <div id="wallet-insufficient" class="bg-red-50 border border-red-200 rounded-md p-2 hidden">
+                        <div class="flex items-center">
+                            <i class="fas fa-exclamation-circle text-red-500 mr-2"></i>
+                            <p class="text-red-700 text-sm">Insufficient balance. Please deposit funds.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="mobile-payment" class="hidden mb-4">
+                    <div class="mb-3">
+                        <label class="block text-gray-700 font-medium mb-1">Mobile Network</label>
+                        <select class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option>MTN Mobile Money</option>
+                            <option>Vodafone Cash</option>
+                            <option>AirtelTigo Money</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-1">Mobile Number</label>
+                        <input type="tel" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="0551234567">
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-medium mb-1">Delivery Address</label>
+                    <textarea class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" rows="2" placeholder="Enter your delivery address"></textarea>
+                </div>
+                
+                <button id="confirm-payment" class="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 font-medium">
+                    Complete Order
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Confirmation Modal -->
+    <div id="order-confirmation" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md">
+            <div class="p-6 text-center">
+                <div class="bg-green-100 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-check text-green-600 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Order Confirmed!</h3>
+                <p class="text-gray-600 mb-4">Thank you for your purchase. Your order details have been sent to your email.</p>
+                
+                <div class="bg-gray-50 rounded-lg p-3 mb-5">
+                    <div class="flex justify-between mb-1">
+                        <span class="text-gray-600">Order ID:</span>
+                        <span class="font-medium">#<span id="order-id">123456</span></span>
+                    </div>
+                    <div class="flex justify-between mb-1">
+                        <span class="text-gray-600">Date:</span>
+                        <span class="font-medium"><span id="order-date">Today</span></span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">Total:</span>
+                        <span class="font-medium">GH₵<span id="order-total">0.00</span></span>
+                    </div>
+                </div>
+                
+                <button id="close-order-confirmation" class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 font-medium">
+                    Continue Shopping
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-3">GhanaDeals</h3>
+                    <p class="text-gray-400 text-sm">Smart shopping with exclusive discounts and cashback rewards.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-3">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white text-sm">Home</a></li>
+                        <li><a href="#products" class="text-gray-400 hover:text-white text-sm">Products</a></li>
+                        <li><a href="#referral" class="text-gray-400 hover:text-white text-sm">Earn Money</a></li>
+                        <li><a href="#wallet" class="text-gray-400 hover:text-white text-sm">Wallet</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-3">Help</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white text-sm">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white text-sm">FAQs</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white text-sm">Shipping</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white text-sm">Returns</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-3">Connect</h4>
+                    <div class="flex space-x-3 mb-3">
+                        <a href="#" class="bg-gray-700 h-8 w-8 rounded-full flex items-center justify-center hover:bg-blue-600">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="bg-gray-700 h-8 w-8 rounded-full flex items-center justify-center hover:bg-pink-600">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="bg-gray-700 h-8 w-8 rounded-full flex items-center justify-center hover:bg-blue-400">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                    <p class="text-gray-400 text-sm">Email: help@ghanadeals.com</p>
+                    <p class="text-gray-400 text-sm">Phone: +233 55 123 4567</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400 text-sm">
+                <p>&copy; 2023 GhanaDeals. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const userMenuButton = document.getElementById('user-menu-button');
+        const userMenu = document.getElementById('user-menu');
+        const cartButton = document.getElementById('cart-button');
+        const cartModal = document.getElementById('cart-modal');
+        const closeCart = document.getElementById('close-cart');
+        const checkoutModal = document.getElementById('checkout-modal');
+        const closeCheckout = document.getElementById('close-checkout');
+        const orderConfirmation = document.getElementById('order-confirmation');
+        const closeOrderConfirmation = document.getElementById('close-order-confirmation');
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const emptyCart = document.getElementById('empty-cart');
+        const cartSummary = document.getElementById('cart-summary');
+        const cartSubtotal = document.getElementById('cart-subtotal');
+        const cartTotal = document.getElementById('cart-total');
+        const proceedCheckout = document.getElementById('proceed-checkout');
+        const checkoutNow = document.getElementById('checkout-now');
+        const checkoutMethods = document.querySelectorAll('.checkout-method');
+        const walletPayment = document.getElementById('wallet-payment');
+        const mobilePayment = document.getElementById('mobile-payment');
+        const confirmPayment = document.getElementById('confirm-payment');
+        const discountTimerSection = document.getElementById('discount-timer');
+        const countdownTimer = document.getElementById('countdown');
+        const cartCountdown = document.getElementById('cart-countdown');
+        const discountApplied = document.getElementById('discount-applied');
+        const discountAmount = document.getElementById('discount-amount');
+        const discountTimerCart = document.getElementById('discount-timer-cart');
+        const paymentMethods = document.querySelectorAll('.payment-method');
+        const depositInstructions = document.getElementById('deposit-instructions');
+        const transactionIdSection = document.getElementById('transaction-id-section');
+        const verifyDeposit = document.getElementById('verify-deposit');
+        const depositSuccess = document.getElementById('deposit-success');
+        const depositAmountInput = document.getElementById('deposit-amount');
+        const instructionAmount = document.getElementById('instruction-amount');
+        const walletBalance = document.getElementById('wallet-balance');
+        const walletBalanceNav = document.getElementById('wallet-balance-nav');
+        const checkoutWalletBalance = document.getElementById('checkout-wallet-balance');
+        const checkoutOrderTotal = document.getElementById('checkout-order-total');
+        const walletInsufficient = document.getElementById('wallet-insufficient');
+        const orderTotal = document.getElementById('order-total');
+        const paymentMethodText = document.getElementById('payment-method');
+        const copyReferral = document.getElementById('copy-referral');
+        const referralLink = document.getElementById('referral-link');
+        const cartCount = document.getElementById('cart-count');
+        const shopNow = document.getElementById('shop-now');
+
+        // State
+        let cart = [];
+        let wallet = 50.00; // Starting with GH₵50 signup bonus
+        let discountEligible = false;
+        let countdownInterval = null;
+        let selectedPaymentMethod = '';
+        let selectedDepositMethod = '';
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load cart from localStorage
+            const savedCart = localStorage.getItem('cart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+                updateCart();
+            }
+            
+            // Check for discount eligibility
+            checkDiscountEligibility();
+            
+            // Update wallet balance display
+            updateWalletBalance();
+        });
+
+        // Event Listeners
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        userMenuButton.addEventListener('click', () => {
+            userMenu.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!userMenu.contains(e.target) && !userMenuButton.contains(e.target)) {
+                userMenu.classList.add('hidden');
+            }
+            
+            if (!mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        cartButton.addEventListener('click', () => {
+            cartModal.classList.remove('hidden');
+        });
+
+        closeCart.addEventListener('click', () => {
+            cartModal.classList.add('hidden');
+        });
+
+        checkoutNow.addEventListener('click', () => {
+            cartModal.classList.add('hidden');
+            checkoutModal.classList.remove('hidden');
+            updateCheckoutSummary();
+        });
+
+        proceedCheckout.addEventListener('click', () => {
+            cartModal.classList.add('hidden');
+            checkoutModal.classList.remove('hidden');
+            updateCheckoutSummary();
+        });
+
+        closeCheckout.addEventListener('click', () => {
+            checkoutModal.classList.add('hidden');
+        });
+
+        checkoutMethods.forEach(method => {
+            method.addEventListener('click', () => {
+                checkoutMethods.forEach(m => m.classList.remove('border-blue-500', 'bg-blue-50'));
+                method.classList.add('border-blue-500', 'bg-blue-50');
+                selectedPaymentMethod = method.getAttribute('data-method');
+                
+                if (selectedPaymentMethod === 'wallet') {
+                    walletPayment.classList.remove('hidden');
+                    mobilePayment.classList.add('hidden');
+                    
+                    // Check wallet balance
+                    if (wallet >= calculateTotal()) {
+                        walletInsufficient.classList.add('hidden');
+                    } else {
+                        walletInsufficient.classList.remove('hidden');
+                    }
+                } else {
+                    walletPayment.classList.add('hidden');
+                    mobilePayment.classList.remove('hidden');
+                }
+            });
+        });
+
+        confirmPayment.addEventListener('click', () => {
+            if (!selectedPaymentMethod) {
+                showNotification('Please select a payment method', 'error');
+                return;
+            }
+            
+            if (selectedPaymentMethod === 'wallet' && wallet < calculateTotal()) {
+                showNotification('Insufficient wallet balance', 'error');
+                return;
+            }
+            
+            // Process payment
+            if (selectedPaymentMethod === 'wallet') {
+                wallet -= calculateTotal();
+                updateWalletBalance();
+            }
+            
+            // Show order confirmation
+            checkoutModal.classList.add('hidden');
+            orderConfirmation.classList.remove('hidden');
+            
+            // Update order details
+            orderTotal.textContent = calculateTotal().toFixed(2);
+            paymentMethodText.textContent = selectedPaymentMethod === 'wallet' ? 'Wallet' : 'Mobile Money';
+            
+            // Generate random order ID
+            document.getElementById('order-id').textContent = Math.floor(100000 + Math.random() * 900000);
+            
+            // Set current date
+            const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
+            document.getElementById('order-date').textContent = new Date().toLocaleDateString('en-US', options);
+            
+            // Clear cart
+            cart = [];
+            updateCart();
+            localStorage.removeItem('cart');
+            discountTimerSection.classList.add('hidden');
+            if (countdownInterval) {
+                clearInterval(countdownInterval);
+            }
+        });
+
+        closeOrderConfirmation.addEventListener('click', () => {
+            orderConfirmation.classList.add('hidden');
+        });
+
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const product = {
+                    id: button.getAttribute('data-id'),
+                    name: button.getAttribute('data-name'),
+                    price: parseFloat(button.getAttribute('data-price')),
+                    image: button.getAttribute('data-image'),
+                    quantity: 1,
+                    addedAt: new Date().getTime()
+                };
+                
+                addToCart(product);
+            });
+        });
+
+        paymentMethods.forEach(method => {
+            method.addEventListener('click', () => {
+                paymentMethods.forEach(m => m.classList.remove('border-blue-500', 'bg-blue-50'));
+                method.classList.add('border-blue-500', 'bg-blue-50');
+                selectedDepositMethod = method.getAttribute('data-method');
+                
+                // Update USSD code based on network
+                let ussdCode = '*170#';
+                if (selectedDepositMethod === 'mtn') ussdCode = '*170#';
+                if (selectedDepositMethod === 'vodafone') ussdCode = '*110#';
+                if (selectedDepositMethod === 'airteltigo') ussdCode = '*110#';
+                
+                document.getElementById('ussd-code').textContent = ussdCode;
+                
+                // Show deposit instructions if amount is entered
+                if (depositAmountInput.value) {
+                    depositInstructions.classList.remove('hidden');
+                }
+            });
+        });
+
+        depositAmountInput.addEventListener('input', (e) => {
+            const amount = parseFloat(e.target.value);
+            if (amount > 0) {
+                instructionAmount.textContent = amount.toFixed(2);
+                depositInstructions.classList.remove('hidden');
+                transactionIdSection.classList.remove('hidden');
+                verifyDeposit.classList.remove('hidden');
+            } else {
+                depositInstructions.classList.add('hidden');
+                transactionIdSection.classList.add('hidden');
+                verifyDeposit.classList.add('hidden');
+            }
+        });
+
+        verifyDeposit.addEventListener('click', () => {
+            const amount = parseFloat(depositAmountInput.value);
+            const transactionId = document.getElementById('transaction-id').value;
+            
+            if (!transactionId) {
+                showNotification('Please enter transaction ID', 'error');
+                return;
+            }
+            
+            if (!selectedDepositMethod) {
+                showNotification('Please select payment method', 'error');
+                return;
+            }
+            
+            // Simulate verification (in real app, this would be an API call)
+            showNotification('Verifying transaction...');
+            
+            setTimeout(() => {
+                wallet += amount;
+                updateWalletBalance();
+                depositSuccess.classList.remove('hidden');
+                document.getElementById('deposited-amount').textContent = amount.toFixed(2);
+                
+                // Reset form
+                setTimeout(() => {
+                    depositAmountInput.value = '';
+                    document.getElementById('transaction-id').value = '';
+                    depositInstructions.classList.add('hidden');
+                    transactionIdSection.classList.add('hidden');
+                    verifyDeposit.classList.add('hidden');
+                    depositSuccess.classList.add('hidden');
+                    paymentMethods.forEach(m => m.classList.remove('border-blue-500', 'bg-blue-50'));
+                    selectedDepositMethod = '';
+                }, 2000);
+            }, 1500);
+        });
+
+        copyReferral.addEventListener('click', () => {
+            referralLink.select();
+            document.execCommand('copy');
+            showNotification('Referral link copied!');
+        });
+
+        shopNow.addEventListener('click', (e) => {
+            e.preventDefault();
+            cartModal.classList.add('hidden');
+            // In a real app, you would scroll to products section
+        });
+
+        // Functions
+        function addToCart(product) {
+            // Check if product already in cart
+            const existingItem = cart.find(item => item.id === product.id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push(product);
+            }
+            
+            updateCart();
+            saveCart();
+            showNotification(`${product.name} added to cart`);
+            
+            // Start discount timer if first item
+            if (cart.length === 1) {
+                startDiscountTimer();
+            }
+        }
+
+        function updateCart() {
+            // Update cart count
+            const itemCount = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = itemCount;
+            
+            // Update cart modal
+            if (cart.length === 0) {
+                emptyCart.classList.remove('hidden');
+                cartSummary.classList.add('hidden');
+            } else {
+                emptyCart.classList.add('hidden');
+                cartSummary.classList.remove('hidden');
+                
+                // Clear existing items
+                cartItemsContainer.innerHTML = '';
+                
+                // Add current items
+                cart.forEach(item => {
+                    const cartItem = document.createElement('div');
+                    cartItem.className = 'flex items-center py-3 border-b border-gray-200';
+                    cartItem.innerHTML = `
+                        <div class="flex-shrink-0 h-16 w-16 rounded-md overflow-hidden">
+                            <img src="${item.image}" alt="${item.name}" class="h-full w-full object-cover">
+                        </div>
+                        <div class="ml-3 flex-1">
+                            <h4 class="text-sm font-medium text-gray-800">${item.name}</h4>
+                            <div class="flex items-center mt-1">
+                                <button class="decrease-quantity text-gray-500 hover:text-blue-600" data-id="${item.id}">
+                                    <i class="fas fa-minus text-xs"></i>
+                                </button>
+                                <span class="mx-2 text-gray-700 text-sm">${item.quantity}</span>
+                                <button class="increase-quantity text-gray-500 hover:text-blue-600" data-id="${item.id}">
+                                    <i class="fas fa-plus text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="ml-3">
+                            <span class="text-sm font-medium text-gray-800">GH₵${(item.price * item.quantity).toFixed(2)}</span>
+                            <button class="remove-item ml-2 text-red-500 hover:text-red-700" data-id="${item.id}">
+                                <i class="fas fa-trash text-xs"></i>
+                            </button>
+                        </div>
+                    `;
+                    cartItemsContainer.appendChild(cartItem);
+                });
+                
+                // Add event listeners to new buttons
+                document.querySelectorAll('.increase-quantity').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const id = button.getAttribute('data-id');
+                        const item = cart.find(item => item.id === id);
+                        if (item) {
+                            item.quantity += 1;
+                            updateCart();
+                            saveCart();
+                        }
+                    });
+                });
+                
+                document.querySelectorAll('.decrease-quantity').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const id = button.getAttribute('data-id');
+                        const item = cart.find(item => item.id === id);
+                        if (item && item.quantity > 1) {
+                            item.quantity -= 1;
+                            updateCart();
+                            saveCart();
+                        }
+                    });
+                });
+                
+                document.querySelectorAll('.remove-item').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const id = button.getAttribute('data-id');
+                        cart = cart.filter(item => item.id !== id);
+                        updateCart();
+                        saveCart();
+                        
+                        if (cart.length === 0) {
+                            discountTimerSection.classList.add('hidden');
+                            if (countdownInterval) {
+                                clearInterval(countdownInterval);
+                            }
+                        }
+                    });
+                });
+            }
+            
+            // Update totals
+            const subtotal = calculateSubtotal();
+            cartSubtotal.textContent = subtotal.toFixed(2);
+            
+            const total = calculateTotal();
+            cartTotal.textContent = total.toFixed(2);
+            
+            // Show/hide discount
+            if (discountEligible) {
+                discountApplied.classList.remove('hidden');
+                discountAmount.textContent = (subtotal * 0.1).toFixed(2);
+            } else {
+                discountApplied.classList.add('hidden');
+            }
+        }
+
+        function saveCart() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        function calculateSubtotal() {
+            return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+        }
+
+        function calculateTotal() {
+            const subtotal = calculateSubtotal();
+            return discountEligible ? subtotal * 0.9 : subtotal;
+        }
+
+        function startDiscountTimer() {
+            discountTimerSection.classList.remove('hidden');
+            discountTimerCart.classList.remove('hidden');
+            
+            // Find the oldest item in cart
+            const oldestItem = cart.reduce((oldest, item) => {
+                return item.addedAt < oldest.addedAt ? item : oldest;
+            }, cart[0]);
+            
+            const endTime = oldestItem.addedAt + 24 * 60 * 60 * 1000; // 24 hours from when first item was added
+            
+            // Update timer immediately
+            updateCountdown(endTime);
+            
+            // Update timer every second
+            countdownInterval = setInterval(() => {
+                updateCountdown(endTime);
+            }, 1000);
+        }
+
+        function updateCountdown(endTime) {
+            const now = new Date().getTime();
+            const distance = endTime - now;
+            
+            if (distance <= 0) {
+                clearInterval(countdownInterval);
+                discountEligible = true;
+                discountTimerSection.classList.add('hidden');
+                discountTimerCart.classList.add('hidden');
+                updateCart();
+                showNotification('10% discount applied to your cart!');
+                return;
+            }
+            
+            // Calculate hours, minutes, seconds
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            // Display timer
+            const timerString = `${Math.floor(hours).toString().padStart(2, '0')}:${Math.floor(minutes).toString().padStart(2, '0')}:${Math.floor(seconds).toString().padStart(2, '0')}`;
+            countdownTimer.textContent = timerString;
+            cartCountdown.textContent = timerString;
+        }
+
+        function checkDiscountEligibility() {
+            if (cart.length === 0) return;
+            
+            const now = new Date().getTime();
+            const oldestItem = cart.reduce((oldest, item) => {
+                return item.addedAt < oldest.addedAt ? item : oldest;
+            }, cart[0]);
+            
+            const timeInCart = now - oldestItem.addedAt;
+            
+            if (timeInCart >= 24 * 60 * 60 * 1000) {
+                discountEligible = true;
+                updateCart();
+            } else {
+                const endTime = oldestItem.addedAt + 24 * 60 * 60 * 1000;
+                startDiscountTimer();
+            }
+        }
+
+        function updateWalletBalance() {
+            walletBalance.textContent = wallet.toFixed(2);
+            walletBalanceNav.textContent = wallet.toFixed(2);
+        }
+
+        function updateCheckoutSummary() {
+            checkoutOrderTotal.textContent = calculateTotal().toFixed(2);
+            checkoutWalletBalance.textContent = wallet.toFixed(2);
+            
+            if (wallet >= calculateTotal()) {
+                walletInsufficient.classList.add('hidden');
+            } else {
+                walletInsufficient.classList.remove('hidden');
+            }
+        }
+
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `fixed top-4 right-4 px-4 py-2 rounded-md shadow-lg text-white font-medium z-50 ${
+                type === 'success' ? 'bg-green-500' : 'bg-red-500'
+            }`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.classList.add('opacity-0', 'transition-opacity', 'duration-300');
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
